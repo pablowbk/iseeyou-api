@@ -28,27 +28,14 @@ app.use(bodyParser.json());
 app.use(cors());
 
 
-// ROOT Route
-app.get('/', (req, res) => {
-  res.send(database.users);
-})
+app.get('/', (req, res) => { res.send('It is alive!!!') })  // ROOT Route
+app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) })  // SIGNIN Route
+app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) }) // REGISTER Route
+app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) }) // PROFILE Route
+app.put('/image', (req, res) => { image.handleImagePut(req, res, db) }) // RANK Route
+app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) }) // API CALL Route
 
-// SIGNIN Route
-app.post('/signin', (req, res) => { signin.handleSignin(req, res, db, bcrypt) })
 
-// REGISTER Route
-app.post('/register', (req, res) => { register.handleRegister(req, res, db, bcrypt) })
-
-// PROFILE Route
-app.get('/profile/:id', (req, res) => { profile.handleProfileGet(req, res, db) })
-
-// RANK Route
-app.put('/image', (req, res) => { image.handleImagePut(req, res, db) })
-
-// API CALL Route
-app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
-
-// start server and set port
-app.listen(process.env.PORT || 3001, () => {
+app.listen(process.env.PORT || 3001, () => {               // start server and set port
   console.log('App is live on port ' + process.env.PORT);
 })
