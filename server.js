@@ -49,6 +49,6 @@ app.put('/image', (req, res) => { image.handleImagePut(req, res, db) })
 app.post('/imageurl', (req, res) => { image.handleApiCall(req, res) })
 
 // start server and set port
-app.listen(prcess.env.PORT || 3001, () => {
+app.listen(process.env.PORT || 3001, () => {
   console.log('App is live on port ' + process.env.PORT);
 })
